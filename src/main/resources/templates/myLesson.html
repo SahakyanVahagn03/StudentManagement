@@ -1,0 +1,44 @@
+<!DOCTYPE html >
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div th:if="${lesson != null}">
+    {lesson: <span th:text="${lesson?.title}"></span>}
+    {duration: <span th:text="${lesson.duration}"></span>}
+    {start date: <span th:text="${lesson.startDate}"></span>}
+    {start date: <span th:text="${lesson.teacher.name + ' ' + lesson.teacher.surname}"></span>}
+    <h3>students</h3>
+    <table border="1">
+        <tr>
+            <th>name</th>
+            <th>surname</th>
+            <th>email</th>
+            <th>picture</th>
+            <th>role</th>
+        </tr>
+
+
+        <tr th:each="user:${users}">
+                        <td th:text="${user.picName}">
+                        </td>
+            <td th:text="${user.name}">
+            </td>
+            <td th:text="${user.surname}">
+            </td>
+            <td th:text="${user.email}">
+            </td>
+            <td th:text="${user.role}">
+            </td>
+            <td th:if="${currentUser.role.name.equals('ADMIN') || currentUser.id == lesson.teacher.id}">
+                <a th:href="@{'/lessons/delete/'+${lesson.id}}">delete</a>
+            </td>
+            <td>
+                <a th:href="@{'/my/lesson/message/'+${user.id}}">send message</a></td>
+        </tr>
+    </table>
+</div>
+</body>
+</html>

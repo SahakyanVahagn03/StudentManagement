@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div th:if="${!messages.isEmpty()}" style="overflow-y:scroll; background:wheat; height: 400px;" >
+    <div th:each="message:${messages}">
+        name: {<span th:text="${message.getFrom().name}"></span>}
+        date: {<span th:text="${message.getDateTime()}"></span>}->[
+        <p th:text="${message.getMessage()}"></p>]
+    </div>
+    <br>
+</div>
+<p th:if="${messages.isEmpty()}">there isn't message yet</p>
+
+<br>
+<form action="/my/lesson/message" method="post">
+    <input type="hidden" name="to" th:value="${user.id}">
+    <input type="text" name="message" placeholder="send message">
+    <input type="submit">
+</form>
+</body>
+</html>

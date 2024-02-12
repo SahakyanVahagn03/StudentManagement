@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+    <form action="/lessons/update" method="post" enctype="multipart/form-data">
+        <input type="hidden" name="id" th:value="${lesson.id}" placeholder="title"><br>
+        <input type="text" name="title" th:value="${lesson.title}" placeholder="title"><br>
+        <input type="time" name="duration" th:value="${lesson.duration}" placeholder="duration"><br>
+        <input type="number" name="price" th:value="${lesson.price}" placeholder="price"><br>
+        <input type="date" name="startDate" th:value="${lesson.startDate}"><br>
+        <input type="submit">
+    </form>
+</body>
+</html>

@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>aa</title>
+</head>
+<body>
+<a href="/lessons/add" th:if="${!currentUser.role.name.equals('STUDENT')}">add lesson</a><br>
+<a href="/users/register" th:if="${currentUser.role.name.equals('ADMIN')}">add user</a><br>
+<a href="/lessons">lessons</a><br>
+<a th:if="${currentUser.lesson != null and currentUser.role.name.equals('ADMIN')}" th:href="@{'/myLesson/'+${currentUser.lesson.id}}">my Lesson</a><br>
+<a href="/logout">logout</a><br>
+
+</body>
+</html>

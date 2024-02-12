@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<table th:if="${lessons != null && !lessons.isEmpty()}" border="1">
+    <tr>
+        <th>title</th>
+        <th>duration</th>
+        <th>price</th>
+        <th>start date</th>
+        <th>teacher</th>
+    </tr>
+
+
+    <tr th:each="lesson:${lessons}">
+        <td th:text="${lesson.getTitle()}">
+        </td>
+        <td th:text="${lesson.getDuration()}">
+        </td>
+        <td th:text="${lesson.getPrice()}">
+        </td>
+        <td th:text="${lesson.getStartDate()}">
+        </td>
+        <td th:text="${lesson.getTeacher.name}"></td>
+        <td th:if="${currentUser.role.name.equals('ADMIN') || currentUser.id == lesson.teacher.id}">
+            <a th:href="@{'/lessons/update/'+${lesson.id}}">edit</a></td>
+        <td th:if="${currentUser.role.name.equals('ADMIN') || currentUser.id == lesson.teacher.id}">
+            <a th:href="@{'/lessons/delete/'+${lesson.id}}">delete</a></td>
+        <td th:if="${currentUser.role.name.equals('STUDENT')}">
+            <a th:href="@{'/lessons/choose/'+${lesson.id}}">join lesson</a></td>
+    </tr>
+</table>
+</body>
+</html>
